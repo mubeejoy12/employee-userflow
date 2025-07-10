@@ -1,8 +1,7 @@
-import Image from "next/image";
-import "./globals.css";
-// app/components/DashboardLayout.tsx
+// app/layout.js (second site)
+// import ClientLayout from "./components/ClientLayout";
 import ClientLayout from "./ClientLayout";
-// import { useState } from "react";
+import "./globals.css";
 
 export const metadata = {
   title: "Sinkronis",
@@ -13,13 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <ClientLayout>
-          <div >
-       
-            {/* Add dashboard-specific styles */}
-            {children}
-          </div>
-        </ClientLayout>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
