@@ -43,7 +43,7 @@ function ColoredRatingSelect({ label, selectedValue, onChange }) {
   const selected = ratings.find((r) => r.value === selectedValue) || ratings[0];
 
   return (
-    <div className="relative w-full mb-4  font-semibold text-gray-900" ref={ref} >
+    <div className="relative w-full mb-4" ref={ref}>
       <label className="block font-medium mb-2">{label}</label>
       <button
         type="button"
@@ -196,7 +196,7 @@ export default function AppraisalPage() {
           padding: "1.5rem",
         }}
       >
-        <div className="w-[781px] font-semibold text-gray-900">
+        <div className="w-[781px]">
           <h1
             className="mb-6"
             style={{
