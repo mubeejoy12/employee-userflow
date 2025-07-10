@@ -44,16 +44,17 @@ export default function AppraisalBoard() {
             filteredObjective === "All" || item.objective === filteredObjective
         )
         .map((entry, index) => ({
-          id: index + 1,
-          objective: entry.objective,
-          kpis: entry.kpis, // keep it an array
-          employeeRating: entry.employeeRating,
-          employeeComment: entry.employeeComments,
-          lineManagerGrade: entry.lineManagerGrade,
-          lineManagerComment: entry.lineManagerComments,
-        }))
+            id: index + 1,
+            objective: entry.objective,
+            kpis: entry.kpis, // keep it an array
+            employeeRating: entry.employeeRating,
+            employeeComment: entry.employeeComments,
+            lineManagerGrade: entry.lineManagerGrade,
+            lineManagerComment: entry.lineManagerComments,
+          }))
         .filter((row) =>
-          row.kpis.join(" ").toLowerCase().includes(searchTerm.toLowerCase())
+            row.kpis.join(' ').toLowerCase().includes(searchTerm.toLowerCase())
+
         )
     : [];
 
@@ -133,54 +134,50 @@ export default function AppraisalBoard() {
 
   return (
     <DashboardLayout>
-      <div className="p-6 w-full max-w-full overflow-x-hidden font-semibold text-gray-900 ">
-        <div>
+      <div className="p-6 w-full max-w-full overflow-x-hidden">
         <h1 className="mb-6 text-3xl font-semibold font-outfit">Appraisal</h1>
 
-<div className="flex align-center justify-between mb-6  ">
- 
-  <h2 className="text-lg font-medium mb-2">Board</h2>
-  <div className="flex flex-wrap justify-end items-center gap-2">
-    <select
-      value={filteredObjective}
-      onChange={(e) => setFilteredObjective(e.target.value)}
-      className="border p-2 rounded w-40"
-    >
-      <option value="All">Members</option>
-      {objectives.map((obj) => (
-        <option key={obj} value={obj}>
-          {obj}
-        </option>
-      ))}
-    </select>
-    <input
-      type="text"
-      placeholder="Filter members"
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      className="border p-2 rounded w-64"
-    />
-    <button
-      onClick={() => {
-        setFilteredObjective("All");
-        setSearchTerm("");
-        localStorage.removeItem("appraisalDataList");
-        setData([]);
-      }}
-      className=" text-white px-2 py-2 rounded"
-    >
-      Clean
-    </button>
+        <div className="mb-4">
+          <h2 className="text-lg font-medium mb-2">Board</h2>
+          <div className="flex flex-wrap justify-end items-center gap-2">
+            <select
+              value={filteredObjective}
+              onChange={(e) => setFilteredObjective(e.target.value)}
+              className="border p-2 rounded w-40"
+            >
+              <option value="All">Members</option>
+              {objectives.map((obj) => (
+                <option key={obj} value={obj}>
+                  {obj}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              placeholder="Filter members"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border p-2 rounded w-64"
+            />
+            <button
+              onClick={() => {
+                setFilteredObjective("All");
+                setSearchTerm("");
+                localStorage.removeItem("appraisalDataList");
+                setData([]);
+              }}
+              className="bg-red-500 text-white px-4 py-2 rounded"
+            >
+              Clean
+            </button>
 
-    <button
-      onClick={() => console.log("Search clicked")}
-      className="bg-blue-500 text-white px-4 py-2 rounded"
-    >
-      Search
-    </button>
-  </div>
-        </div>
-          {/*  */}
+            <button
+              onClick={() => console.log("Search clicked")}
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Search
+            </button>
+          </div>
         </div>
 
         <div className="w-full">
