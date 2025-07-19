@@ -4,6 +4,27 @@ import { TextField, Button, Typography } from "@mui/material";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    // ✨ Hardcoded credentials
+    const defaultEmail = "testuser@example.com";
+    const defaultPassword = "password123";
+
+    if (email === defaultEmail && password === defaultPassword) {
+      // Simulate storing a session
+      localStorage.setItem("user", JSON.stringify({ email }));
+      router.push("/overview");
+    } else {
+      alert(
+        "Invalid credentials. Try using testuser@example.com / password123"
+      );
+    }
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
