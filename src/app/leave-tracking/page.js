@@ -4,6 +4,7 @@ import DashboardLayout from "../components/DashboardLayout";
 import { useState, useEffect, Suspense } from "react";
 import LeaveTable from "../components/LeaveTable";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 
 function LeaveTrackingContent() {
   const router = useRouter();
@@ -127,12 +128,34 @@ function LeaveTrackingContent() {
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold">Leave History</h1>
+        <h1 className="text-2xl font-bold">Profile Leave History</h1>
         <button
           onClick={() => router.push("/leave-tracking/apply-leave")}
           className="bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-blue-700 transition"
         >
           + Apply Leave
+        </button>
+      </div>
+
+      <div className="flex items-center justify-between rounded-lg p-4">
+        <div className="flex items-center gap-6 ">
+          <Image
+            src="/Ellipse586.png"
+            alt="User"
+            width={45}
+            height={45}
+            className="rounded-full object-cover"
+          />
+          <div className="w-px h-6 bg-gray-300" />
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">
+              Blessing Awoyemi
+            </h2>
+            <p className="text-sm text-gray-500 font-light">HR Director</p>
+          </div>
+        </div>
+        <button className="border border-orange-400 text-orange-500 px-4 py-1 rounded-full text-sm font-medium">
+          Employee
         </button>
       </div>
       <LeaveTable
