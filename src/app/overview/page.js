@@ -2,6 +2,17 @@ import Image from "next/image";
 import DashboardLayout from "../components/DashboardLayout";
 
 export default function OverviewPage() {
+  const [showID, setShowID] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      router.push("/login");
+    }
+  }, []);
+
+  const toggleID = () => setShowID((prev) => !prev);
   // 👉 Work Details Data
   const workDetails = [
     { label: "Department", value: "HR Department" },
