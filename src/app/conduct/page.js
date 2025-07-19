@@ -15,6 +15,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import QueryForm from "@/app/components/QueryForm";
 import QueryDetailsDrawer from "../components/QueryDetailsDrawer";
 import DashboardLayout from "../components/DashboardLayout";
+import FilterListAltIcon from "@mui/icons-material/FilterListAlt";
 
 // Sample table data
 const queryRows = [
@@ -264,17 +265,11 @@ export default function ConductPage() {
 
           <Box display="flex" gap={1} flexWrap="wrap">
             <Button variant="outlined">Export CSV</Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleNewEntry}
-            >
-              {tab === 0 ? "+ New Query" : "+ New Suspension"}
-            </Button>
           </Box>
         </div>
 
         {/* Top Bar */}
+
         <Box
           mb={2}
           display="flex"
@@ -296,6 +291,22 @@ export default function ConductPage() {
               ),
             }}
           />
+          <Button
+            variant="outlined"
+            startIcon={<FilterListAltIcon />}
+            sx={{
+              borderColor: "black",
+              color: "black",
+              textTransform: "none",
+              fontWeight: 500,
+              "&:hover": {
+                borderColor: "black",
+                backgroundColor: "#f3f3f3", // Optional subtle hover background
+              },
+            }}
+          >
+            Filter
+          </Button>
         </Box>
 
         {/* Table */}
@@ -318,7 +329,45 @@ export default function ConductPage() {
             getRowId={(row) => row.id}
             disableRowSelectionOnClick
             hideFooter
-            sx={{ border: "none" }}
+            sx={{
+              fontFamily: "Outfit",
+              fontSize: 14,
+
+              // 🚫 Kill ALL outer borders
+              border: "none",
+
+              // 🚫 Remove column header underline + background
+              "& .MuiDataGrid-columnHeaders": {
+                backgroundColor: "#F9FAFB",
+                borderBottom: "none",
+              },
+
+              // 🚫 Hide vertical column lines
+              "& .MuiDataGrid-columnSeparator": {
+                visibility: "hidden",
+              },
+
+              // 🚫 Remove cell borders
+              "& .MuiDataGrid-cell": {
+                borderBottom: "none",
+              },
+
+              // 🚫 Remove footer border
+              "& .MuiDataGrid-footerContainer": {
+                borderTop: "none",
+              },
+
+              // 🚫 Remove row borders
+              "& .MuiDataGrid-row": {
+                border: "none",
+              },
+
+              // ✨ Optional: Soft hover effect
+              "& .MuiDataGrid-row:hover": {
+                backgroundColor: "#F3F4F6",
+                outline: "none",
+              },
+            }}
           />
         </Box>
 
