@@ -145,12 +145,19 @@ export default function OverviewPage() {
               Confirmed
             </button>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 mt-2">
             <span className="text-sm text-gray-600 font-medium">
-              Employee ID: <span className="font-semibold">EMP-4721XA</span>
+              Employee ID:{" "}
+              <span className="font-semibold">
+                {showID ? "EMP-4721XA" : "**********"}
+              </span>
             </span>
-            <button className="text-sm text-gray-500 border border-gray-300 rounded-md px-3 py-1 hover:bg-gray-100 transition">
-              Hide
+
+            <button
+              onClick={toggleID}
+              className="text-sm text-gray-500 border border-gray-300 rounded-md px-3 py-1 hover:bg-gray-100 transition"
+            >
+              {showID ? "Hide" : "Show"}
             </button>
           </div>
         </div>
