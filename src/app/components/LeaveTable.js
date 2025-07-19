@@ -55,6 +55,8 @@ export default function LeaveTable({ rows, onApprove, onReject }) {
         sx={{
           fontFamily: "Outfit",
           fontSize: 14,
+          "& .even": { backgroundColor: "#F9FAFB" },
+          "& .odd": { backgroundColor: "white" },
 
           // 🚫 Kill ALL outer borders
           border: "none",
