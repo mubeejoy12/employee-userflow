@@ -25,11 +25,6 @@ export default function DashboardLayout({ children }) {
       icon: <InsertChartIcon fontSize="small" />,
     },
     {
-      label: "Reportee",
-      href: "/reportee",
-      icon: <PersonIcon fontSize="small" />,
-    },
-    {
       label: "Attendance",
       href: "/attendance",
       icon: <AccessTimeIcon fontSize="small" />,
