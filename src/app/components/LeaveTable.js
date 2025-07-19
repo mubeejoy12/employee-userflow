@@ -18,31 +18,27 @@ export default function LeaveTable({ rows, onApprove, onReject }) {
     { field: "type", headerName: "Leave Type", flex: 1 },
     { field: "from", headerName: "From", flex: 1 },
     { field: "to", headerName: "To", flex: 1 },
-    { field: "remaining", headerName: "Remaining", flex: 1 },
+    { field: "remaining", headerName: "Remaining Leave", flex: 1 },
     {
-      field: "action",
-      headerName: "",
-      sortable: false,
-      width: 130,
-      renderCell: (params) => (
-        <div className="flex gap-2">
-          {/* <IconButton>
-            <EditIcon className="text-gray-500 hover:text-blue-600" />
-          </IconButton> */}
-          <button
-            className="text-green-600 text-sm"
-            onClick={() => onApprove(params.row.id)}
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      renderCell: (params) => {
+        const status = params.row.status;
+        const statusStyles = {
+          Approved: " text-green-300",
+          Pending: "text-yellow-300",
+          Rejected: " text-red-300",
+        };
+
+        return (
+          <span
+            className={`px-3 py-1 rounded-full text-xs font-semibold ${statusStyles[status]}`}
           >
-            ✔
-          </button>
-          <button
-            className="text-red-600 text-sm"
-            onClick={() => onReject(params.row.id)}
-          >
-            ❌
-          </button>
-        </div>
-      ),
+            {status}
+          </span>
+        );
+      },
     },
   ];
 
