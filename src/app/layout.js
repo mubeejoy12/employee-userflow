@@ -1,7 +1,10 @@
 import "./globals.css";
+import { ReactQueryProvider } from "./components/ReactQueryProvider";
 import { Geist, Geist_Mono } from "next/font/google";
 // app/components/DashboardLayout.tsx
 import ClientLayout from "./ClientLayout";
+import { AlertProvider } from "./context/AlertContext";
+import { AuthProvider } from "./context/AuthContext";
 import { Outfit } from "next/font/google";
 // import { useState } from "react";
 const geistSans = Geist({
@@ -29,9 +32,15 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClientLayout>
-          <div>{children}</div>
-        </ClientLayout>
+        <ReactQueryProvider>
+          <AuthProvider>
+            <AlertProvider>
+              <ClientLayout>
+                <div>{children}</div>
+              </ClientLayout>
+            </AlertProvider>
+          </AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
