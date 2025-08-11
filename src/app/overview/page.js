@@ -4,23 +4,21 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import DashboardLayout from "../components/DashboardLayout";
 
+import { useAuth } from "../context/AuthContext";
+
 export default function OverviewPage() {
-  const [showID, setShowID] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
   const router = useRouter();
+  const { user } = useAuth();
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      router.push("/login");
-    }
-  }, []);
+  
 
-  const toggleID = () => setShowID((prev) => !prev);
+  const toggleDetails = () => setShowDetails((prev) => !prev);
   // 👉 Work Details Data
   const workDetails = [
     { label: "Department", value: "HR Department" },
     { label: "Phone", value: "+234 9045674567" },
-    { label: "Email", value: "johnsmith@gmail.com" },
+    { label: "Email", value: user?.email || "johnsmith@gmail.com" },
     { label: "Nationality", value: "Nigeria" },
     { label: "Date of Birth", value: "02-05-1999" },
     { label: "Marital Status", value: "Single" },
@@ -82,9 +80,9 @@ export default function OverviewPage() {
           <div className="w-px h-6 bg-gray-300" />
           <div>
             <h2 className="text-xl font-semibold text-gray-900">
-              Blessing Awoyemi
+              {user?.name || 'User Name'}
             </h2>
-            <p className="text-sm text-gray-500 font-light">HR Director</p>
+            <p className="text-sm text-gray-500 font-light">{user?.email || 'user@example.com'}</p>
           </div>
         </div>
         <button className="border border-orange-400 text-orange-500 px-4 py-1 rounded-full text-sm font-medium">
@@ -134,7 +132,6 @@ export default function OverviewPage() {
         </div>
       </div>
 
-      {/* 👉 Work Details */}
       <div className="w-full p-2 bg-white rounded-lg space-y-4">
         <div className="flex items-center justify-between border-b border-gray-200 p-4">
           <div className="flex items-center gap-2">
@@ -149,32 +146,36 @@ export default function OverviewPage() {
             <span className="text-sm text-gray-600 font-medium">
               Employee ID:{" "}
               <span className="font-semibold">
-                {showID ? "EMP-4721XA" : "**********"}
+                {showDetails ? "EMP-4721XA" : "**********"}
               </span>
             </span>
 
             <button
-              onClick={toggleID}
+              onClick={toggleDetails}
               className="text-sm text-gray-500 border border-gray-300 rounded-md px-3 py-1 hover:bg-gray-100 transition"
             >
-              {showID ? "Hide" : "Show"}
+              {showDetails ? "Hide" : "Show"}
             </button>
           </div>
         </div>
 
-        {/* 👉 Work Details Grid */}
-        <div className="divide-gray-200 border-gray-200 border-b p-2">
-          <div className="grid grid-cols-3 gap-6 py-3">
-            {workDetails.map((item, index) => (
-              <div key={index}>
-                <p className="text-sm text-gray-500">{item.label}</p>
-                <p className="text-sm font-medium text-gray-900">
-                  {item.value}
-                </p>
+        {showDetails && (
+          <>
+            {/* 👉 Work Details Grid */}
+            <div className="divide-gray-200 border-gray-200 border-b p-2">
+              <div className="grid grid-cols-3 gap-6 py-3">
+                {workDetails.map((item, index) => (
+                  <div key={index}>
+                    <p className="text-sm text-gray-500">{item.label}</p>
+                    <p className="text-sm font-medium text-gray-900">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* 👉 Employee Activity */}
