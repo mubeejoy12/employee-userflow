@@ -158,13 +158,7 @@ export default function Login() {
                 {loading ? <Spinner /> : "Login"}
               </button>
 
-              {/* Footer */}
-              <p className="mt-6 text-gray-600 text-center">
-                Don&apos;t have an account?{" "}
-                <Link href={"/auth/signup"}>
-                  <span className="text-blue-600 hover:underline">Get started</span>
-                </Link>
-              </p>
+              
             </form>
           </div>
 
